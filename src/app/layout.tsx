@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import {ClerkProvider} from '@clerk/nextjs'
+import { ClerkProvider } from "@clerk/nextjs";
 import { User } from "lucide-react";
 import UserSync from "@/components/UserSync";
 import TanStackProvider from "@/components/providers/TanStackProvider";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,7 +19,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "DentWise - AI Powered Dental Assistant",
-  description: "Get instant dental advice and support with DentWise, your AI-powered dental assistant. Ask questions, receive personalized recommendations, and manage your oral health with ease.",
+  description:
+    "Get instant dental advice and support with DentWise, your AI-powered dental assistant. Ask questions, receive personalized recommendations, and manage your oral health with ease.",
 };
 
 export default function RootLayout({
@@ -28,9 +30,8 @@ export default function RootLayout({
 }>) {
   return (
     <TanStackProvider>
-
-    <ClerkProvider
-    appearance={{
+      <ClerkProvider
+        appearance={{
           variables: {
             colorPrimary: "#e78a53",
             colorBackground: "#f3f4f6",
@@ -39,18 +40,18 @@ export default function RootLayout({
             colorInputBackground: "#f3f4f6",
           },
         }}
-    >
-
-
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
-        <UserSync/> 
-        {children}
-      </body>
-    </html>
-    </ClerkProvider> 
-
+      >
+        <html lang="en">
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
+          >
+            {/* this is done in the home page component */}
+            {/* <UserSync /> */}
+            <Toaster/>
+            {children}
+          </body>
+        </html>
+      </ClerkProvider>
     </TanStackProvider>
-    
   );
 }

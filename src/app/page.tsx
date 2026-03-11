@@ -7,23 +7,25 @@ import CTA from "@/components/landing/CTA";
 import Footer from "@/components/landing/Footer";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-
+import { syncUser } from "@/lib/actions/users";
 
 export default async function Home() {
-
   const user = await currentUser();
+  
+  // the best way of syncing => webhooks
+  await syncUser();
+  
   // redirect auth user to dashboard
   if (user) redirect("/dashboard");
   return (
     <div className="min-h-screen bg-background">
-      <Header/>
-      <Hero/>
-      <HowItWorks/>
-      <WhatToAsk/>
-      <PricingSection/>
-      <CTA/>
-      <Footer/>
+      <Header />
+      <Hero />
+      <HowItWorks />
+      <WhatToAsk />
+      <PricingSection />
+      <CTA />
+      <Footer />
     </div>
   );
 }
-
