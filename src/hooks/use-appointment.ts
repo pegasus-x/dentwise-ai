@@ -6,9 +6,9 @@ import {
   getBookedTimeSlots,
   getUserAppointments,
   updateAppointmentStatus,
+  deleteAppointment,
 } from "@/lib/actions/appointments";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { get } from "http";
 
 export function useGetAppointments() {
   const result = useQuery({
@@ -58,5 +58,18 @@ export function useUpdateAppointmentStatus() {
       queryClient.invalidateQueries({ queryKey: ["getAppointments"] });
     },
     onError: (error) => console.error("Failed to update appointment:", error),
+  });
+}
+
+export function useDeleteAppointment() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteAppointment,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["getAppointments"] });
+      queryClient.invalidateQueries({ queryKey: ["getUserAppointments"] });
+    },
+    onError: (error) => console.error("Failed to delete appointment:", error),
   });
 }
