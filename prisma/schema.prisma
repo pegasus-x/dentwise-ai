@@ -74,11 +74,9 @@ model Appointment {
 enum Gender {
   MALE
   FEMALE
-  OTHER
 }
 
 enum AppointmentStatus {
-  CONFIRMED 
-  CANCELLED
+  CONFIRMED
   COMPLETED
 }
