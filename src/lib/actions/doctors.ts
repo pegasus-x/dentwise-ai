@@ -1,8 +1,9 @@
 "use server";
-import { prisma } from "../prisma";
+
 import { Gender } from "@prisma/client";
-import { revalidatePath } from "next/cache";
+import { prisma } from "../prisma";
 import { generateAvatar } from "../utils";
+import { revalidatePath } from "next/cache";
 
 export async function getDoctors() {
   try {
@@ -34,8 +35,7 @@ interface CreateDoctorInput {
 
 export async function createDoctor(input: CreateDoctorInput) {
   try {
-    if (!input.name || !input.email)
-      throw new Error("Name and email are required");
+    if (!input.name || !input.email) throw new Error("Name and email are required");
 
     const doctor = await prisma.doctor.create({
       data: {
@@ -58,6 +58,7 @@ export async function createDoctor(input: CreateDoctorInput) {
     throw new Error("Failed to create doctor");
   }
 }
+
 interface UpdateDoctorInput extends Partial<CreateDoctorInput> {
   id: string;
 }
@@ -65,8 +66,7 @@ interface UpdateDoctorInput extends Partial<CreateDoctorInput> {
 export async function updateDoctor(input: UpdateDoctorInput) {
   try {
     // validate
-    if (!input.name || !input.email)
-      throw new Error("Name and email are required");
+    if (!input.name || !input.email) throw new Error("Name and email are required");
 
     const currentDoctor = await prisma.doctor.findUnique({
       where: { id: input.id },
@@ -96,7 +96,6 @@ export async function updateDoctor(input: UpdateDoctorInput) {
         speciality: input.speciality,
         gender: input.gender,
         isActive: input.isActive,
-        imageUrl: generateAvatar(input.name, input.gender),
       },
     });
 
@@ -112,9 +111,11 @@ export async function getAvailableDoctors() {
     const doctors = await prisma.doctor.findMany({
       where: { isActive: true },
       include: {
-        _count: { select: { appointments: true } },
+        _count: {
+          select: { appointments: true },
+        },
       },
-      orderBy: { createdAt: "asc" },
+      orderBy: { name: "asc" },
     });
 
     return doctors.map((doctor) => ({
