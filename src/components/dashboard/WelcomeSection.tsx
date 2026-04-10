@@ -5,6 +5,14 @@ import { FadeInUp } from "./MotionWrapper";
 export default async function WelcomeSection() {
   const user = await currentUser();
 
+  const hour = new Date().toLocaleString("en-US", {
+  timeZone: "Asia/Kolkata",
+  hour: "numeric",
+  hour12: false,
+});
+
+const currentHour = parseInt(hour);
+
   return (
     <FadeInUp>
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between bg-primary/[0.03] backdrop-blur-md rounded-[2rem] p-6 md:p-10 border border-primary/10 mb-8 md:mb-12 overflow-hidden shadow-sm font-['Manrope']">
@@ -23,12 +31,12 @@ export default async function WelcomeSection() {
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight font-['Space_Grotesk'] leading-tight">
               Good{" "}
               <span className="text-primary">
-              {new Date().getHours() < 12
-                ? "Morning"
-                : new Date().getHours() < 18
-                  ? "Afternoon"
-                  : "Evening"}
-              </span>
+               {currentHour < 12
+                  ? "Morning"
+              : currentHour < 18
+                 ? "Afternoon"
+                 : "Evening"}
+               </span>  
               , {user?.firstName}
             </h1>
             <p className="text-sm md:text-lg text-muted-foreground max-w-sm font-medium leading-relaxed opacity-70">
