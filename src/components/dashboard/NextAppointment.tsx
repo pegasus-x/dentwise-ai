@@ -6,7 +6,14 @@ import { CalendarIcon, ClockIcon, UserIcon } from "lucide-react";
 import { FadeInUp } from "./MotionWrapper";
 
 async function NextAppointment() {
-  const appointments = await getUserAppointments();
+   let appointments = [];
+
+try {
+  appointments = await getUserAppointments();
+} catch (error) {
+  console.error("Error fetching appointments:", error);
+  return <NoNextAppointments />;
+}
 
   // filter for upcoming CONFIRMED appointments only (today or future)
   const upcomingAppointments =
