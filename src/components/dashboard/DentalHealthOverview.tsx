@@ -9,8 +9,19 @@ import { FadeInUp } from "./MotionWrapper";
 
 
 async function DentalHealthOverview() {
-    const appointmentStats = await getUserAppointmentStats();
-    const user = await currentUser();
+    let appointmentStats = {
+  completedAppointments: 0,
+  totalAppointments: 0,
+};
+
+let user = null;
+
+try {
+  appointmentStats = await getUserAppointmentStats();
+  user = await currentUser();
+} catch (error) {
+  console.error("Error loading overview:", error);
+}
     
   return (
     <FadeInUp delay={0.2}>
@@ -44,7 +55,9 @@ async function DentalHealthOverview() {
             </div>
             <div className="col-span-2 md:col-span-1 text-center p-6 bg-primary/[0.03] border border-primary/5 rounded-[1.5rem] transition-all hover:scale-105 hover:bg-primary/[0.05]">
               <div className="text-xl md:text-2xl font-extrabold text-primary mb-1">
-                {format(new Date(user?.createdAt!), "MMM yyyy")}
+               {user?.createdAt
+  ? format(new Date(user.createdAt), "MMM yyyy")
+  : "N/A"}
               </div>
               <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/60">Member Since</div>
             </div>
