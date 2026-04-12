@@ -184,11 +184,21 @@ MIT License
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Authors
 
-**Rati Ranjan Sendha**
+### 🧑‍💻 Rati Ranjan Sendha 
+- Designed and developed the complete application architecture  
+- Implemented AI integration, authentication, and core features  
 
-* GitHub: https://github.com/pegasus-x/
+GitHub: https://github.com/pegasus-x/
+
+---
+
+### 🧑‍💻 Pratham Bagri  
+- Contributed to appointment booking functionality  
+- Assisted in UI development and overall user experience improvements  
+
+GitHub: https://github.com/prathambagri  
 
 ---
 
