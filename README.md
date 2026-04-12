@@ -141,14 +141,6 @@ npm run dev
 
 ---
 
-## 🎥 Demo Preview
-
-<p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2d6dGJ0a2Rtb2N6bXU2d2k2c2xkMGZ2a2V4cXJ6eWR6bHF0d3d2NyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o7aD2saalBwwftBIY/giphy.gif" width="600" />
-</p>
-
----
-
 ## 🧠 Key Learnings
 
 * Understanding Next.js server vs client rendering
