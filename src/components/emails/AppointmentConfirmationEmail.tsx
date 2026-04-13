@@ -34,328 +34,141 @@ function AppointmentConfirmationEmail({
     <Html lang="en">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <style>{`
-          /* ── Reset ── */
-          * { box-sizing: border-box; }
-          body, table, td, p, a { margin: 0; padding: 0; }
-          img { border: 0; display: block; }
+       <style>{`
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f4f7fb;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
 
-          /* ── Base ── */
-          body {
-            background-color: #eef2f7;
-            font-family: Georgia, "Times New Roman", serif;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-          }
+  .outer {
+    padding: 24px 12px;
+  }
 
-          .outer {
-            width: 100%;
-            background-color: #eef2f7;
-            padding: 40px 16px;
-          }
+  .card {
+    max-width: 560px;
+    margin: auto;
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #e6ebf1;
+  }
 
-          .card {
-            width: 100%;
-            max-width: 580px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-          }
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #0f3460, #1d4ed8);
+    padding: 24px;
+    text-align: center;
+    color: white;
+  }
 
-          /* ── Header ── */
-          .header {
-            background-color: #0f3460;
-            padding: 28px 40px;
-            text-align: center;
-          }
-          .logo-icon-wrap {
-            display: inline-block;
-            background: rgba(255,255,255,0.15);
-            border-radius: 14px;
-            width: 56px;
-            height: 56px;
-            line-height: 56px;
-            text-align: center;
-            font-size: 28px;
-            margin: 0 auto 10px;
-          }
-          .logo-wordmark {
-            font-size: 26px;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            display: block;
-            margin: 0 0 4px;
-          }
-          .logo-tagline {
-            font-size: 11px;
-            color: rgba(255,255,255,0.55);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: block;
-            font-family: sans-serif;
-          }
+  .logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
 
-          /* ── Hero ── */
-          .hero {
-            background-color: #0f3460;
-            padding: 0 40px 36px;
-            text-align: center;
-          }
-          .check-circle {
-            display: inline-block;
-            width: 52px;
-            height: 52px;
-            line-height: 52px;
-            background: #22c55e;
-            border-radius: 50%;
-            font-size: 24px;
-            color: #ffffff;
-            text-align: center;
-            margin: 0 auto 16px;
-          }
-          .hero-heading {
-            color: #ffffff;
-            font-size: 28px;
-            font-weight: 700;
-            margin: 0 0 10px;
-            font-family: Georgia, serif;
-          }
-          .hero-sub {
-            color: #93c5fd;
-            font-size: 15px;
-            line-height: 22px;
-            margin: 0;
-          }
+  /* Hero */
+  .hero {
+    padding: 24px;
+    text-align: center;
+  }
 
-          /* ── Body copy ── */
-          .body-pad { padding: 28px 40px 0; }
-          .greeting {
-            font-size: 18px;
-            font-weight: 600;
-            color: #0f3460;
-            margin: 0 0 8px;
-          }
-          .body-text {
-            color: #475569;
-            font-size: 15px;
-            line-height: 24px;
-            margin: 0;
-          }
+  .hero h1 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: #0f172a;
+  }
 
-          /* ── Details card ── */
-          .details-wrap {
-            margin: 24px 40px;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            overflow: hidden;
-          }
-          .card-head {
-            background: #f0f9ff;
-            padding: 14px 20px;
-            border-bottom: 1px solid #e2e8f0;
-            font-size: 13px;
-            font-weight: 700;
-            color: #0369a1;
-            letter-spacing: 0.6px;
-            text-transform: uppercase;
-            font-family: sans-serif;
-          }
-          .detail-table {
-            width: 100%;
-            border-collapse: collapse;
-            padding: 0 20px;
-          }
-          .detail-icon-cell {
-            width: 36px;
-            vertical-align: middle;
-            font-size: 18px;
-            padding: 14px 8px 14px 20px;
-          }
-          .detail-text-cell {
-            vertical-align: middle;
-            padding: 14px 16px 14px 4px;
-          }
-          .detail-label {
-            font-size: 11px;
-            font-weight: 600;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 0.7px;
-            margin: 0 0 2px;
-            font-family: sans-serif;
-            display: block;
-          }
-          .detail-val {
-            font-size: 15px;
-            font-weight: 600;
-            color: #0f172a;
-            margin: 0;
-            display: block;
-          }
-          .detail-val-green { color: #0f766e; }
-          .row-divider {
-            border: none;
-            border-top: 1px solid #f1f5f9;
-            margin: 0 20px;
-          }
+  .hero p {
+    font-size: 14px;
+    color: #64748b;
+  }
 
-          /* ── Reminder ── */
-          .reminder-wrap {
-            margin: 0 40px 28px;
-            background: #fffbeb;
-            border: 1px solid #fde68a;
-            border-radius: 12px;
-            padding: 18px 20px;
-          }
-          .reminder-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: #92400e;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin: 0 0 12px;
-            font-family: sans-serif;
-          }
-          .reminder-row {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 8px;
-          }
-          .reminder-arrow {
-            color: #d97706;
-            font-weight: 700;
-            font-size: 14px;
-            margin-right: 10px;
-            flex-shrink: 0;
-            font-family: sans-serif;
-          }
-          .reminder-text {
-            color: #78350f;
-            font-size: 13px;
-            line-height: 20px;
-            font-family: sans-serif;
-          }
+  /* Section */
+  .section {
+    margin: 16px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+  }
 
-          /* ── CTA ── */
-          .cta-wrap { padding: 0 40px 28px; text-align: center; }
-          .cta-btn {
-            display: inline-block;
-            background-color: #0f3460;
-            color: #ffffff !important;
-            font-size: 15px;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 10px;
-            padding: 14px 32px;
-            letter-spacing: 0.2px;
-            font-family: sans-serif;
-          }
+  .section-header {
+    background: #f1f5f9;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #334155;
+    letter-spacing: 0.5px;
+  }
 
-          /* ── Help / footer ── */
-          .help-text {
-            color: #64748b;
-            font-size: 14px;
-            line-height: 22px;
-            text-align: center;
-            padding: 0 40px 28px;
-            font-family: sans-serif;
-          }
-          .footer-divider { border: none; border-top: 1px solid #e2e8f0; margin: 0; }
-          .footer {
-            background: #f8fafc;
-            padding: 28px 40px;
-            text-align: center;
-          }
-          .footer-brand {
-            font-size: 16px;
-            font-weight: 700;
-            color: #0f3460;
-            margin: 0 0 4px;
-            font-family: Georgia, serif;
-            display: block;
-          }
-          .footer-tag {
-            font-size: 12px;
-            color: #94a3b8;
-            letter-spacing: 0.3px;
-            margin: 0 0 16px;
-            display: block;
-            font-family: sans-serif;
-          }
-          .footer-contact {
-            font-size: 13px;
-            color: #64748b;
-            margin: 0 0 16px;
-            font-family: sans-serif;
-            display: block;
-          }
-          .footer-link { color: #0369a1; text-decoration: underline; }
-          .footer-legal {
-            font-size: 11px;
-            color: #94a3b8;
-            line-height: 18px;
-            font-family: sans-serif;
-          }
+  .row {
+    display: flex;
+    padding: 14px 16px;
+    border-top: 1px solid #f1f5f9;
+    align-items: center;
+  }
 
-          /* ════════════════════════════════════════
-             MOBILE  ≤ 600px
-          ════════════════════════════════════════ */
-          @media only screen and (max-width: 600px) {
+  .icon {
+    width: 28px;
+    font-size: 16px;
+  }
 
-            .outer { padding: 0 !important; }
+  .content {
+    flex: 1;
+  }
 
-            .card {
-              border-radius: 0 !important;
-              box-shadow: none !important;
-              max-width: 100% !important;
-              width: 100% !important;
-            }
+  .label {
+    font-size: 11px;
+    color: #94a3b8;
+  }
 
-            .header { padding: 24px 20px !important; }
-            .hero   { padding: 0 20px 28px !important; }
-            .hero-heading { font-size: 22px !important; }
+  .value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+  }
 
-            .body-pad       { padding: 20px 20px 0 !important; }
-            .details-wrap   { margin: 16px 16px !important; }
-            .reminder-wrap  { margin: 0 16px 20px !important; }
-            .cta-wrap       { padding: 0 16px 20px !important; }
-            .help-text      { padding: 0 16px 20px !important; }
-            .footer         { padding: 20px 16px !important; }
+  /* CTA */
+  .cta {
+    text-align: center;
+    padding: 20px;
+  }
 
-            /* Full-width CTA on mobile */
-            .cta-btn {
-              display: block !important;
-              width: 100% !important;
-              text-align: center !important;
-              padding: 16px 20px !important;
-            }
+  .btn {
+    display: inline-block;
+    background: #1d4ed8;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
 
-            /* Stack the paired columns (Date+Time, Duration+Cost) */
-            .pair-row { display: block !important; }
-            .pair-icon {
-              display: inline-block !important;
-              width: 36px !important;
-              padding: 10px 8px 2px 20px !important;
-              vertical-align: top !important;
-            }
-            .pair-text {
-              display: inline-block !important;
-              width: calc(100% - 52px) !important;
-              padding: 10px 16px 2px 4px !important;
-              vertical-align: top !important;
-            }
+  /* Footer */
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: #94a3b8;
+    padding: 20px;
+  }
 
-            /* Single-pair rows: tighten padding */
-            .detail-icon-cell { padding: 12px 8px 12px 20px !important; }
-            .detail-text-cell { padding: 12px 16px 12px 4px !important; }
+  /* Mobile */
+  @media (max-width: 600px) {
+    .row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
 
-            .row-divider { margin: 0 16px !important; }
-          }
-        `}</style>
+    .icon {
+      margin-bottom: 4px;
+    }
+  }
+`}</style>
       </Head>
 
       <Preview>
