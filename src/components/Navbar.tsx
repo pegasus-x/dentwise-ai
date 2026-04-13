@@ -29,6 +29,15 @@ function Navbar() {
     { href: "/pro", label: "Pro", icon: CrownIcon },
   ];
 
+  const userEmail = user?.emailAddresses?.[0]?.emailAddress;
+  const isOwner = userEmail === "ratiranjan905@gmail.com";
+
+    // Detect admin route
+   const isAdminRoute = pathname === "/admin" || pathname.startsWith("/admin/");
+
+    // Final role logic
+     const role = isOwner && isAdminRoute ? "Admin" : "Patient";
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -92,7 +101,7 @@ function Navbar() {
               <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/[0.03] border border-primary/10 shadow-[inset_0_1px_4px_rgba(var(--primary),0.05)]">
                 <Sparkles className="w-2.5 h-2.5 text-primary/70 animate-pulse" />
                 <span className="text-[10px] text-primary/70 uppercase tracking-[0.1em] font-black leading-none">
-                  {user?.publicMetadata?.role as string || "Patient"}
+                  {role}
                 </span>
               </div>
             </motion.div>
