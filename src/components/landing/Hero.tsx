@@ -131,62 +131,6 @@ function Hero() {
                   </Button>
                 </SignUpButton>
               </motion.div>
-
-              {/* TESTIMONIALS */}
-              <motion.div variants={itemVariants} className="pt-8">
-                <div className="flex flex-wrap items-center gap-6">
-                  {/* AVATARS */}
-                  <div className="flex -space-x-3">
-                    {[
-                      "photo-1544005313-94ddf0286df2",
-                      "photo-1560250097-0b93528c311a",
-                      "photo-1580489944761-15a19d654956",
-                      "photo-1633332755192-727a05c4013d",
-                      "photo-1598300042247-d088f8ab3a91",
-                    ].map((img, i) => (
-                      <motion.div
-                        key={i}
-                        whileHover={{ scale: 1.2, zIndex: 10, y: -5 }}
-                        className="relative"
-                      >
-                        <Image
-                          src={`https://images.unsplash.com/${img}?w=100&h=100&fit=crop&crop=face`}
-                          alt="User"
-                          width={48}
-                          height={48}
-                          className="w-12 h-12 rounded-full object-cover ring-4 ring-background shadow-lg"
-                        />
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* RATINGS */}
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center gap-1">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <motion.div
-                            key={star}
-                            animate={{ rotate: [0, 5, -5, 0] }}
-                            transition={{ duration: 2, repeat: Infinity, delay: star * 0.2 }}
-                          >
-                            <StarIcon className="h-4 w-4 fill-amber-400 text-amber-400" />
-                          </motion.div>
-                        ))}
-                      </div>
-                      <span className="text-sm font-bold text-foreground">
-                        4.9/5
-                      </span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      Trusted by{" "}
-                      <span className="font-semibold text-foreground">
-                        1,200+ patients
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
             </motion.div>
 
             {/* RIGHT CONTENT – IMAGE */}
